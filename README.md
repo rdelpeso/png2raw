@@ -39,10 +39,10 @@ only 3 are used.
     10 10 20 00 00 00 00 00 00 00 00 00 00
     15 10 20 00 00 00 00 00 00 00 00 00 00
 
-Channel 01: Elevation
-Channel 02: Multiplier
-Channel 03: Water Level
-Channles 04-13: not used as far as I know
+- Channel 01: Elevation
+- Channel 02: Multiplier
+- Channel 03: Water Level
+- Channles 04-13: not used as far as I know
 
 When OpenSim reads the RAW file it reads the first 3 bytes into variables (val,
 mul, water) and discards the following 10. This data will be translated into
