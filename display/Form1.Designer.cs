@@ -85,7 +85,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = ".png|*.png|All Files|*.*";
+            this.openFileDialog1.Filter = ".png|*.png|RAW|*.raw|All Files|*.*";
             // 
             // convertSourceBtn
             // 

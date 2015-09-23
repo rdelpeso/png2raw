@@ -50,6 +50,19 @@ namespace display
             {
                 return;
             }
+
+            if (Path.GetExtension(openFileDialog1.FileName) == ".raw")
+            {
+                byte[] data = new byte[0];
+                using (var memoryStream = new MemoryStream())
+                {
+                    openFileDialog1.OpenFile().CopyTo(memoryStream);
+                    data = memoryStream.ToArray();
+                }
+                sourcePb.Image = Raw2Bitmap.Convert(data);
+                return;
+            }
+
             sourcePb.ImageLocation = openFileDialog1.FileName;
         }
 
