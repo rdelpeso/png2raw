@@ -13,16 +13,25 @@ namespace display
 {
     public partial class Form1 : Form
     {
+        private Bitmap water;
+        private Bitmap blank;
+
         public Form1()
         {
             InitializeComponent();
+            toolTip1.SetToolTip(loadSourceBtn, "Imports an image to be used as source.");
+            toolTip1.SetToolTip(convertSourceBtn, "Converts the imported image to grayscale.");
+            toolTip1.SetToolTip(saveRawBtn, "Saves the grayscaled image as RAW.");
+            toolTip1.SetToolTip(checkBox1, "Inverts the colors in the source image when converted.");
+            toolTip1.SetToolTip(comboBox1, "Defines how stretched the resulting RAW image will be. If you want soft curves and small elevations use a lower number.");
+            water = new Bitmap(256,256);
+            blank = new Bitmap(256,256);
         }
 
         private void convertSourceBtn_Click(object sender, EventArgs e)
         {
             var bm = new Bitmap(sourcePb.Image);
             var tbm = new Bitmap(sourcePb.Image);
-            var water = new Bitmap(sourcePb.Image);
 
             for (int y = 0; y < 256; y++)
             {
@@ -40,7 +49,7 @@ namespace display
             }
             rawPb.Image = tbm;
             rawPb.BackgroundImage = tbm;
-            rawPb.Image = water;
+            changeWaterState();
         }
 
         private void loadSourceBtn_Click(object sender, EventArgs e)
@@ -87,6 +96,21 @@ namespace display
             }
 
             stream.Close();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            changeWaterState();
+        }
+
+        private void changeWaterState()
+        {
+            if (checkBox2.CheckState == CheckState.Checked)
+            {
+                rawPb.Image = water;
+                return;
+            }
+            rawPb.Image = blank;
         }
     }
 }
